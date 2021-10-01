@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\MemberController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dummyApiController;
@@ -33,3 +34,5 @@ Route::post("device/update/{id}", [DeviceController::class, 'update']);
 Route::delete("device/delete/{id}", [DeviceController::class, 'delete']);
 
 Route::get("device/search/{search}", [DeviceController::class, 'search']);
+
+Route::apiResource('member', MemberController::class);

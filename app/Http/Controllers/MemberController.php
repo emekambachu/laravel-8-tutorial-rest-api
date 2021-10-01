@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Member;
 
 class MemberController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Member[]|\Illuminate\Database\Eloquent\Collection
      */
     public function index()
     {
-        //
+        return Member::all();
     }
 
     /**
