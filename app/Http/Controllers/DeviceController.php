@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Device;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DeviceController extends Controller
 {
@@ -16,6 +17,17 @@ class DeviceController extends Controller
     }
 
     public function add(Request $request){
+
+        $rules = array(
+            "name" => ['required', 'min:2'],
+            "member_id" => ['required'],
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->fails()){
+            return response()->json($validator->errors(), 401);
+        }
 
         $device = new Device;
         $device->name = $request->name;
@@ -50,7 +62,7 @@ class DeviceController extends Controller
         return ['result' => 'Unable to delete'];
     }
 
-    public function search($name){
-        return Device::where("name", $name)->get();
+    public function search($search){
+        return Device::where("name", "like", "%".$search."%")->get();
     }
 }

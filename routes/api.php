@@ -32,4 +32,4 @@ Route::post("device/update/{id}", [DeviceController::class, 'update']);
 
 Route::delete("device/delete/{id}", [DeviceController::class, 'delete']);
 
-Route::get("device/search", [DeviceController::class, 'search']);
+Route::get("device/search/{search}", [DeviceController::class, 'search']);
