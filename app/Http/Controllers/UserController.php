@@ -6,6 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+// Include first before using
+use Illuminate\Support\Facades\Http;
+
 class UserController extends Controller
 {
     function index(Request $request)
@@ -26,5 +29,10 @@ class UserController extends Controller
         ];
 
         return response($response, 201);
+    }
+
+    public function index2(){
+        $users = Http::get("https://reqres.in/api/users?page=2");
+        return view("users", ['users' => $users['data'] ]);
     }
 }
